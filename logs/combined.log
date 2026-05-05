@@ -1,0 +1,13 @@
+{"level":"info","message":"Hello World from logger!","service":"user-service","timestamp":"2026-05-01T18:35:12.830Z"}
+{"level":"info","message":"::1 - - [01/May/2026:18:35:12 +0000] \"GET / HTTP/1.1\" 200 13 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\"","service":"user-service","timestamp":"2026-05-01T18:35:12.839Z"}
+{"level":"info","message":"Hello World from logger!","service":"user-service","timestamp":"2026-05-01T19:42:56.924Z"}
+{"level":"info","message":"::1 - - [01/May/2026:19:42:56 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\"","service":"user-service","timestamp":"2026-05-01T19:42:56.948Z"}
+{"level":"info","message":"Hello World from logger!","service":"user-service","timestamp":"2026-05-04T13:57:19.723Z"}
+{"level":"info","message":"::1 - - [04/May/2026:13:57:19 +0000] \"GET / HTTP/1.1\" 200 13 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\"","service":"user-service","timestamp":"2026-05-04T13:57:19.734Z"}
+{"level":"info","message":"::1 - - [04/May/2026:13:57:20 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\"","service":"user-service","timestamp":"2026-05-04T13:57:20.027Z"}
+{"level":"info","message":"Hello World from logger!","service":"user-service","timestamp":"2026-05-04T14:00:10.236Z"}
+{"level":"info","message":"::1 - - [04/May/2026:14:00:10 +0000] \"GET / HTTP/1.1\" 200 13 \"-\" \"HTTPie\"","service":"user-service","timestamp":"2026-05-04T14:00:10.238Z"}
+{"level":"info","message":"::1 - - [04/May/2026:14:05:36 +0000] \"GET /api HTTP/1.1\" 200 28 \"-\" \"HTTPie\"","service":"user-service","timestamp":"2026-05-04T14:05:36.732Z"}
+{"level":"info","message":"::1 - - [04/May/2026:14:05:40 +0000] \"GET /health HTTP/1.1\" 200 15 \"-\" \"HTTPie\"","service":"user-service","timestamp":"2026-05-04T14:05:40.671Z"}
+{"level":"info","message":"::1 - - [04/May/2026:14:05:48 +0000] \"GET /api/auth/sign-in HTTP/1.1\" 404 155 \"-\" \"HTTPie\"","service":"user-service","timestamp":"2026-05-04T14:05:48.894Z"}
+{"level":"info","message":"::1 - - [04/May/2026:14:05:56 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 22 \"-\" \"HTTPie\"","service":"user-service","timestamp":"2026-05-04T14:05:56.890Z"}
