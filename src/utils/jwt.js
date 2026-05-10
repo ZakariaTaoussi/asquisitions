@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import logger from '../config/logger';
+import logger from '../config/logger.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
@@ -13,7 +13,7 @@ const JWT_EXPIRATION = '1d'; // Token expires in 1 day
             logger.error('Error signing JWT:', e);
             throw new Error('Failed to sign JWT');
         }
-    }
+    },
     verify: (token) => { 
         try { 
             return jwt.verify(token, JWT_SECRET);
