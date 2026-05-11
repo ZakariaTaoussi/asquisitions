@@ -16,7 +16,8 @@
     "db:studio": "drizzle-kit studio",
     "dev:docker": "node ./scripts/dev.js",
     "prod:docker": "node ./scripts/prod.js",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"  },
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ZakariaTaoussi/asquisitions.git"

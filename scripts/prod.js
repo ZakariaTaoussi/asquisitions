@@ -1,21 +1,28 @@
 import { execSync, spawnSync } from 'child_process';
 import fs from 'fs';
 
-const log = (msg) => console.log(msg);
-const error = (msg) => { console.error(msg); process.exit(1); };
+const log = msg => console.log(msg);
+const error = msg => {
+  console.error(msg);
+  process.exit(1);
+};
 
 log('🚀 Starting Acquisition App in Production Mode');
 log('===============================================');
 
 // ── Check .env.production exists ──────────────────
 if (!fs.existsSync('.env.production')) {
-  error('❌ Error: .env.production file not found!\n   Please create .env.production with your production environment variables.');
+  error(
+    '❌ Error: .env.production file not found!\n   Please create .env.production with your production environment variables.'
+  );
 }
 
 // ── Check Docker is running ────────────────────────
 const dockerCheck = spawnSync('docker', ['info'], { stdio: 'ignore' });
 if (dockerCheck.status !== 0) {
-  error('❌ Error: Docker is not running!\n   Please start Docker and try again.');
+  error(
+    '❌ Error: Docker is not running!\n   Please start Docker and try again.'
+  );
 }
 
 log('\n📦 Building and starting production container...');
@@ -24,7 +31,9 @@ log('   - Running in optimized production mode\n');
 
 // ── Start production containers ────────────────────
 try {
-  execSync('docker compose -f docker-compose.prod.yml up --build -d', { stdio: 'inherit' });
+  execSync('docker compose -f docker-compose.prod.yml up --build -d', {
+    stdio: 'inherit',
+  });
 } catch {
   error('❌ Failed to start production containers.');
 }
@@ -37,7 +46,10 @@ let ready = false;
 
 for (let i = 1; i <= maxRetries; i++) {
   try {
-    execSync('node -e "require(\'http\').get(\'http://localhost:3000/health\', r => process.exit(r.statusCode===200?0:1))"', { stdio: 'ignore' });
+    execSync(
+      "node -e \"require('http').get('http://localhost:3000/health', r => process.exit(r.statusCode===200?0:1))\"",
+      { stdio: 'ignore' }
+    );
     ready = true;
     log('✅ App is ready!');
     break;
@@ -48,7 +60,9 @@ for (let i = 1; i <= maxRetries; i++) {
 }
 
 if (!ready) {
-  error('❌ App never became healthy. Check logs:\n   docker logs acquisitions-app-prod');
+  error(
+    '❌ App never became healthy. Check logs:\n   docker logs acquisitions-app-prod'
+  );
 }
 
 // ── Run migrations ─────────────────────────────────

@@ -2,8 +2,11 @@ import { execSync, spawnSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-const log = (msg) => console.log(msg);
-const error = (msg) => { console.error(msg); process.exit(1); };
+const log = msg => console.log(msg);
+const error = msg => {
+  console.error(msg);
+  process.exit(1);
+};
 
 log('🚀 Starting Acquisition App in Development Mode');
 log('================================================');
@@ -16,7 +19,9 @@ if (!fs.existsSync('.env.development')) {
 // ── Check Docker is running ────────────────────────
 const dockerCheck = spawnSync('docker', ['info'], { stdio: 'ignore' });
 if (dockerCheck.status !== 0) {
-  error('❌ Error: Docker is not running!\n   Please start Docker Desktop and try again.');
+  error(
+    '❌ Error: Docker is not running!\n   Please start Docker Desktop and try again.'
+  );
 }
 
 // ── Create .neon_local directory ───────────────────
@@ -25,7 +30,9 @@ log('✅ .neon_local directory ready');
 
 // ── Add .neon_local to .gitignore ──────────────────
 const gitignorePath = path.resolve('.gitignore');
-const gitignoreContent = fs.existsSync(gitignorePath) ? fs.readFileSync(gitignorePath, 'utf8') : '';
+const gitignoreContent = fs.existsSync(gitignorePath)
+  ? fs.readFileSync(gitignorePath, 'utf8')
+  : '';
 if (!gitignoreContent.includes('.neon_local/')) {
   fs.appendFileSync(gitignorePath, '\n.neon_local/\n');
   log('✅ Added .neon_local/ to .gitignore');
@@ -35,7 +42,9 @@ log('\n📦 Starting containers in background...');
 
 // ── Step 1 : Start containers in background ────────
 try {
-  execSync('docker compose -f docker-compose.dev.yml up -d --build', { stdio: 'inherit' });
+  execSync('docker compose -f docker-compose.dev.yml up -d --build', {
+    stdio: 'inherit',
+  });
 } catch {
   error('❌ Failed to start Docker containers.');
 }
@@ -48,8 +57,21 @@ let ready = false;
 
 for (let i = 1; i <= maxRetries; i++) {
   const result = spawnSync(
-    'docker', ['compose', '-f', 'docker-compose.dev.yml', 'exec', 'neon-local',
-    'pg_isready', '-h', 'localhost', '-p', '5432', '-U', 'neon'],
+    'docker',
+    [
+      'compose',
+      '-f',
+      'docker-compose.dev.yml',
+      'exec',
+      'neon-local',
+      'pg_isready',
+      '-h',
+      'localhost',
+      '-p',
+      '5432',
+      '-U',
+      'neon',
+    ],
     { stdio: 'ignore' }
   );
 
@@ -83,4 +105,6 @@ log('   Application: http://localhost:3000');
 log('   Database:    postgres://neon:npg@localhost:5432/neondb\n');
 log('📋 Following logs (Ctrl+C to stop)...\n');
 
-spawnSync('docker', ['compose', '-f', 'docker-compose.dev.yml', 'logs', '-f'], { stdio: 'inherit' });
+spawnSync('docker', ['compose', '-f', 'docker-compose.dev.yml', 'logs', '-f'], {
+  stdio: 'inherit',
+});

@@ -3,17 +3,15 @@ export const cookies = {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'Strict',
-    maxAge: 24 * 60 * 60 * 1000 // 1 day
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
   }),
   set: (res, name, value, options = {}) => {
-    res.cookie(name, value, { ...cookies.getOptions(), ...options })
+    res.cookie(name, value, { ...cookies.getOptions(), ...options });
   },
   clear: (res, name, options = {}) => {
-    res.clearCookie(name, { ...cookies.getOptions(), ...options })
+    res.clearCookie(name, { ...cookies.getOptions(), ...options });
   },
   get: (req, name) => {
-    return req.cookies[name]
-  }
-}
-
-
+    return req.cookies[name];
+  },
+};
