@@ -77,4 +77,4 @@ log('\n🎉 Production environment started!');
 log('   Application: http://localhost:3000\n');
 log('Useful commands:');
 log('   View logs : docker logs -f acquisitions-app-prod');
-log('   Stop app  : docker compose -f docker-compose.prod.yml down');
+log('Stop app  : docker compose -f docker-compose.prod.yml down');

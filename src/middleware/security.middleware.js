@@ -22,12 +22,10 @@ const securityMiddleware = async (req, res, next) => {
 
     if (decision.isDenied() && decision.reason.isBot()) {
       logger.warn('Bot request blocked', { ip: req.ip, path: req.path });
-      return res
-        .status(403)
-        .json({
-          error: 'Forbidden',
-          message: 'Automated requests are not allowed',
-        });
+      return res.status(403).json({
+        error: 'Forbidden',
+        message: 'Automated requests are not allowed',
+      });
     }
 
     if (decision.isDenied() && decision.reason.isShield()) {
