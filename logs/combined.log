@@ -1627,3 +1627,4 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [11/May/2026:17:45:57 +0000] \"GET /health HTTP/1.1\" 200 15 \"-\" \"-\"","service":"user-service","timestamp":"2026-05-11T17:45:57.274Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [11/May/2026:17:45:57 +0000] \"GET /api HTTP/1.1\" 200 28 \"-\" \"-\"","service":"user-service","timestamp":"2026-05-11T17:45:57.325Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [11/May/2026:17:45:57 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"user-service","timestamp":"2026-05-11T17:45:57.352Z"}
+{"level":"info","message":"::1 - - [11/May/2026:17:46:16 +0000] \"GET /health HTTP/1.1\" 200 15 \"-\" \"-\"","service":"user-service","timestamp":"2026-05-11T17:46:16.678Z"}
