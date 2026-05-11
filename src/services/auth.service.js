@@ -38,7 +38,7 @@ export const CreateUser = async ({ name, email, password, role = 'user' }) => {
            .values({
         name,
         email,
-        passwordHash: passwordHash, // ← password → passwordHash
+        passwordHash: passwordHash, 
         role
     })
             .returning({
@@ -59,4 +59,35 @@ export const CreateUser = async ({ name, email, password, role = 'user' }) => {
 
         throw error;
     }
+};
+export const authenticateUser = async ({ email, password }) => {
+  try {
+    const [existingUser] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
+
+    if (!existingUser) {
+      throw new Error('User not found');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, existingUser.passwordHash);
+
+    if (!isPasswordValid) {
+      throw new Error('Invalid password');
+    }
+
+    logger.info(`User ${existingUser.email} authenticated successfully`);
+    return {
+      id: existingUser.id,
+      name: existingUser.name,
+      email: existingUser.email,
+      role: existingUser.role,
+      createdAt: existingUser.createdAt,
+    };
+  } catch (e) {
+    logger.error(`Error authenticating user: ${e}`);
+    throw e;
+  }
 };

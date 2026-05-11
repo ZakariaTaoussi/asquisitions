@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import logger from '../config/logger.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 const JWT_EXPIRATION = '1d'; // Token expires in 1 day
 
